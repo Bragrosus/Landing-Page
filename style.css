@@ -401,6 +401,7 @@ a:hover {
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center; /* Añadido para centrar verticalmente */
     animation: deslizarDesdeDerecha 1s ease-out, flotar 3s ease-in-out infinite;
 }
 
@@ -410,6 +411,10 @@ a:hover {
     border-radius: 50%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: var(--transicion-rapida);
+    display: block; /* Asegura que la imagen se muestre como bloque */
+    width: 300px; /* Ajusta este valor según tus necesidades */
+    height: 300px; /* Ajusta este valor según tus necesidades */
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin distorsionarse */
 }
 
 .hero-image img:hover {
@@ -506,35 +511,25 @@ a:hover {
 
 .portafolio {
     padding: 5rem 0;
-    background-color: var(--color-blanco);
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.portfolio-item {
-    text-align: center;
-    padding: 2rem;
     background-color: var(--color-gris-claro);
-    border-radius: 10px;
-    transition: var(--transicion-rapida);
     position: relative;
     overflow: hidden;
 }
 
-.portfolio-item::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradiente-principal);
-    opacity: 0.1;
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-item {
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
     transition: var(--transicion-rapida);
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-item:hover {
@@ -542,35 +537,124 @@ a:hover {
     box-shadow: var(--sombra-media);
 }
 
-.portfolio-item:hover::before {
-    top: 0;
+.gallery-image {
+    position: relative;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-azul-oscuro);
+    color: var(--color-blanco);
+    overflow: hidden;
 }
 
-.portfolio-item img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-    position: relative;
+.gallery-image i {
+    font-size: 4rem;
+    transition: var(--transicion-rapida);
     z-index: 1;
+}
+
+.portfolio-item:hover .gallery-image i {
+    opacity: 0;
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 96, 115, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transicion-rapida);
+}
+
+.portfolio-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-content {
+    text-align: center;
+    padding: 1rem;
+    z-index: 2;
+}
+
+.gallery-overlay-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-blanco);
+}
+
+.gallery-overlay-content p {
+    font-size: 1rem;
+    color: var(--color-gris-claro);
 }
 
 .portfolio-info {
-    position: relative;
-    z-index: 1;
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .portfolio-info h3 {
     font-size: 1.25rem;
-    margin-bottom: 0.5rem;
     color: var(--color-azul-oscuro);
+    margin-bottom: 1rem;
 }
 
 .portfolio-info p {
     font-size: 1rem;
     color: var(--color-gris-azulado);
     margin-bottom: 1rem;
+}
+
+.portfolio-info ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-info ul li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    color: var(--color-gris-azulado);
+}
+
+.portfolio-info ul li i {
+    color: var(--color-verde-azulado-oscuro);
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    min-width: 1.5rem;
+    text-align: center;
+}
+
+.portfolio-info .button {
+    width: 100%;
+    text-align: center;
+    margin-top: auto;
+    background-color: var(--color-verde-azulado-oscuro);
+    color: var(--color-blanco);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: var(--transicion-rapida);
+}
+
+.portfolio-info .button:hover {
+    background-color: var(--color-azul-oscuro);
+    transform: translateY(-3px);
+}
+
+/* Mejoras adicionales para la responsividad */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ==========================================================================
@@ -988,6 +1072,12 @@ a:focus, button:focus, input:focus, textarea:focus {
     .footer h3::after, .footer h4::after {
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .hero-image img {
+        width: 200px; /* Tamaño más pequeño para móviles */
+        height: 200px; /* Tamaño más pequeño para móviles */
+        margin: 0 auto; /* Centra la imagen en dispositivos móviles */
     }
 }
 
