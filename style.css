@@ -1,0 +1,1367 @@
+/* ==========================================================================
+   Tabla de Contenidos:
+   1. Importaciones y Configuración General
+   2. Variables de Colores y Estilos Globales
+   3. Estilos Base y Tipografía
+   4. Componentes Reutilizables
+   5. Encabezado y Navegación
+   6. Sección Hero
+   7. Sección de Servicios
+   8. Sección de Portafolio
+   9. Sección de Habilidades y Tecnologías
+   10. Sección de Contacto
+   11. Pie de Página
+   12. Animaciones y Efectos
+   13. Mejoras de Accesibilidad
+   14. Estilos Responsivos
+   15. Efectos y Mejoras Visuales
+   16. Enlaces Externos con Iconos
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Importaciones y Configuración General
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--color-negro);
+    background-color: var(--color-gris-claro);
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. Variables de Colores y Estilos Globales
+   ========================================================================== */
+
+:root {
+    --color-azul-oscuro: #3F4B8C;
+    --color-gris-claro: #F2F2F2;
+    --color-gris-azulado: #869AA6;
+    --color-verde-azulado-oscuro: #0D6073;
+    --color-negro: #0D0D0D;
+    --color-blanco: #FFFFFF;
+    
+    --sombra-suave: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --gradiente-principal: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-verde-azulado-oscuro) 100%);
+    --gradiente-secundario: linear-gradient(45deg, var(--color-gris-azulado) 0%, var(--color-azul-oscuro) 100%);
+    
+    --transicion-rapida: all 0.3s ease;
+    --transicion-media: all 0.5s ease;
+    --transicion-lenta: all 0.8s ease;
+}
+
+/* ==========================================================================
+   3. Estilos Base y Tipografía
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--color-verde-azulado-oscuro);
+    text-decoration: none;
+    transition: var(--transicion-rapida);
+}
+
+a:hover {
+    color: var(--color-azul-oscuro);
+}
+
+/* ==========================================================================
+   4. Componentes Reutilizables
+   ========================================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    color: var(--color-azul-oscuro);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-verde-azulado-oscuro);
+    transition: var(--transicion-media);
+}
+
+.section-title:hover::after {
+    width: 100px;
+}
+
+.section-icon {
+    display: block;
+    font-size: 2.5rem;
+    color: var(--color-azul-oscuro);
+    text-align: center;
+    margin-bottom: 1rem;
+    transition: var(--transicion-rapida);
+}
+
+.section-icon:hover {
+    transform: rotate(360deg);
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transicion-rapida);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: var(--transicion-media);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.button:hover::after {
+    width: 0;
+    height: 0;
+}
+
+.primary-button {
+    background-color: var(--color-verde-azulado-oscuro);
+    color: var(--color-blanco);
+    border: 2px solid var(--color-blanco);
+}
+
+.secondary-button {
+    background-color: transparent;
+    border: 2px solid var(--color-blanco);
+    color: var(--color-blanco);
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-media);
+}
+
+.primary-button:hover {
+    background-color: var(--color-blanco);
+    color: var(--color-verde-azulado-oscuro);
+}
+
+.secondary-button:hover {
+    background-color: var(--color-blanco);
+    color: var(--color-azul-oscuro);
+}
+
+/* ==========================================================================
+   5. Encabezado y Navegación
+   ========================================================================== */
+
+.header {
+    background-color: var(--color-blanco);
+    box-shadow: var(--sombra-suave);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transicion-rapida);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: 2px solid transparent;
+    transition: var(--transicion-rapida);
+}
+
+.logo-text {
+    color: var(--color-azul-oscuro);
+}
+
+.logo-highlight {
+    background-color: var(--color-verde-azulado-oscuro);
+    color: var(--color-blanco);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+}
+
+.logo:hover {
+    border-color: var(--color-azul-oscuro);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
+    display: flex;
+    gap: 0.5rem;
+    list-style-type: none;
+}
+
+.nav-list li {
+    position: relative;
+}
+
+.nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-azul-oscuro);
+    text-decoration: none;
+    transition: var(--transicion-rapida);
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    color: var(--color-verde-azulado-oscuro);
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.nav-link i {
+    margin-right: 8px;
+    font-size: 1.2em;
+    transition: var(--transicion-rapida);
+}
+
+.nav-link:hover i {
+    transform: scale(1.3);
+}
+
+.nav-list li::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-verde-azulado-oscuro);
+    transform: scaleX(0);
+    transition: var(--transicion-rapida);
+}
+
+.nav-list li:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-link.active {
+    color: var(--color-verde-azulado-oscuro);
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   6. Sección Hero
+   ========================================================================== */
+
+.hero {
+    padding: 5rem 0;
+    background: var(--gradiente-principal);
+    color: var(--color-blanco);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="0.5" stroke-opacity="0.1"/></svg>') repeat;
+    opacity: 0.1;
+    animation: moveBackground 20s linear infinite;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.hero-text {
+    flex: 1;
+    animation: deslizarDesdeIzquierda 1s ease-out;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.hero-text p {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+}
+
+.skill {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    transition: var(--transicion-rapida);
+}
+
+.skill:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    animation: deslizarDesdeDerecha 1s ease-out, flotar 3s ease-in-out infinite;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: var(--transicion-rapida);
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+}
+
+/* ==========================================================================
+   7. Sección de Servicios
+   ========================================================================== */
+
+.servicios {
+    padding: 5rem 0;
+    background-color: var(--color-blanco);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.service-item {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-gris-claro);
+    border-radius: 10px;
+    transition: var(--transicion-rapida);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-item::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradiente-principal);
+    opacity: 0.1;
+    transition: var(--transicion-rapida);
+}
+
+.service-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-media);
+}
+
+.service-item:hover::before {
+    top: 0;
+}
+
+.service-item i {
+    font-size: 3rem;
+    color: var(--color-verde-azulado-oscuro);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    transition: var(--transicion-rapida);
+}
+
+.service-item:hover i {
+    transform: scale(1.1);
+}
+
+.service-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--color-azul-oscuro);
+    position: relative;
+    z-index: 1;
+}
+
+.service-item p {
+    font-size: 1rem;
+    color: var(--color-gris-azulado);
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================================================
+   8. Sección de Portafolio
+   ========================================================================== */
+
+.portafolio {
+    padding: 5rem 0;
+    background-color: var(--color-blanco);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.portfolio-item {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-gris-claro);
+    border-radius: 10px;
+    transition: var(--transicion-rapida);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradiente-principal);
+    opacity: 0.1;
+    transition: var(--transicion-rapida);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-media);
+}
+
+.portfolio-item:hover::before {
+    top: 0;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-info {
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-azul-oscuro);
+}
+
+.portfolio-info p {
+    font-size: 1rem;
+    color: var(--color-gris-azulado);
+    margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   9. Sección de Habilidades y Tecnologías
+   ========================================================================== */
+
+.habilidades {
+    padding: 5rem 0;
+    background-color: var(--color-blanco);
+}
+
+.skills-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.skills-group {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-gris-claro);
+    border-radius: 10px;
+    transition: var(--transicion-rapida);
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-group::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradiente-principal);
+    opacity: 0.1;
+    transition: var(--transicion-rapida);
+}
+
+.skills-group:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--sombra-media);
+}
+
+.skills-group:hover::before {
+    top: 0;
+}
+
+.skills-group h3 {
+    font-size: 1.5rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.skills-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.skills-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.skills-list i {
+    font-size: 1.8rem;
+    color: var(--color-verde-azulado-oscuro);
+    margin-right: 1rem;
+    transition: var(--transicion-rapida);
+}
+
+.skills-group:hover .skills-list i {
+    transform: scale(1.1);
+}
+
+.skill-bar {
+    flex: 1;
+    height: 10px;
+    background-color: var(--color-gris-azulado);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skill-level {
+    height: 100%;
+    background-color: var(--color-verde-azulado-oscuro);
+    width: 0;
+    transition: width 1s ease-out;
+}
+
+/* ==========================================================================
+   10. Sección de Contacto
+   ========================================================================== */
+
+.contacto {
+    padding: 5rem 0;
+    background-color: var(--color-gris-claro);
+    position: relative;
+    overflow: hidden;
+}
+
+.contacto::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom right, var(--color-blanco) 0%, var(--color-blanco) 50%, transparent 50%, transparent 100%);
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--color-blanco);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--sombra-media);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-azul-oscuro);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--color-gris-azulado);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: var(--transicion-rapida);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-verde-azulado-oscuro);
+    box-shadow: 0 0 0 3px rgba(13, 96, 115, 0.1);
+    transform: translateY(-2px);
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    transition: var(--transicion-rapida);
+}
+
+.contact-form button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   11. Pie de Página
+   ========================================================================== */
+
+.footer {
+    background-color: var(--color-azul-oscuro);
+    color: var(--color-blanco);
+    padding: 3rem 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(to right, var(--color-verde-azulado-oscuro), var(--color-azul-oscuro));
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-info, .footer-links, .footer-social {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer h3, .footer h4 {
+    margin-bottom: 1rem;
+    color: var(--color-blanco);
+    position: relative;
+    display: inline-block;
+}
+
+.footer h3::after, .footer h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: var(--color-verde-azulado-oscuro);
+    transition: var(--transicion-rapida);
+}
+
+.footer h3:hover::after, .footer h4:hover::after {
+    width: 100%;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a, .footer-social a {
+    color: var(--color-gris-claro);
+    text-decoration: none;
+    transition: var(--transicion-rapida);
+    display: inline-block;
+}
+
+.footer-links a:hover, .footer-social a:hover {
+    color: var(--color-blanco);
+    transform: translateX(5px);
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+
+.social-icons a {
+    transition: var(--transicion-rapida);
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    color: var(--color-verde-azulado-oscuro);
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   12. Animaciones y Efectos
+   ========================================================================== */
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.aparecer {
+    animation: aparecer 1s ease-in;
+}
+
+@keyframes deslizarDesdeIzquierda {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.deslizar-izquierda {
+    animation: deslizarDesdeIzquierda 1s ease-out;
+}
+
+@keyframes deslizarDesdeDerecha {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.deslizar-derecha {
+    animation: deslizarDesdeDerecha 1s ease-out;
+}
+
+.section-title, .portfolio-item, .service-item, .skills-group {
+    animation: aparecer 1s ease-in;
+}
+
+@keyframes escribir {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+.titulo-animado {
+    display: inline-block;
+    overflow: hidden;
+    border-right: .15em solid var(--color-verde-azulado-oscuro);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: 
+        escribir 3.5s steps(40, end),
+        parpadeo-cursor .75s step-end infinite;
+}
+
+@keyframes parpadeo-cursor {
+    from, to { border-color: transparent }
+    50% { border-color: var(--color-verde-azulado-oscuro) }
+}
+
+/* ==========================================================================
+   13. Mejoras de Accesibilidad
+   ========================================================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+a:focus, button:focus, input:focus, textarea:focus {
+    outline: 2px solid var(--color-verde-azulado-oscuro);
+    outline-offset: 2px;
+}
+
+.hero, .footer {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   14. Estilos Responsivos
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .header {
+        position: static;
+    }
+
+    .header .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text, .hero-image {
+        flex: none;
+        width: 100%;
+    }
+
+    .cta-buttons {
+        justify-content: center;
+    }
+
+    .services-grid, .portfolio-grid, .skills-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer h3::after, .footer h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* ==========================================================================
+   15. Efectos y Mejoras Visuales
+   ========================================================================== */
+
+.gallery-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-image img {
+    transition: var(--transicion-rapida);
+}
+
+.gallery-image:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 96, 115, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transicion-rapida);
+}
+
+.gallery-image:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-content {
+    color: var(--color-blanco);
+    text-align: center;
+}
+
+.hero {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+img {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+.tech-highlight {
+    font-weight: 600;
+    color: var(--color-verde-azulado-oscuro);
+}
+
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(to bottom, rgba(242, 242, 242, 0.1), transparent);
+    z-index: 1;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.skill-tag {
+    background-color: var(--color-gris-claro);
+    color: var(--color-azul-oscuro);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.skill-tag:hover {
+    background-color: var(--color-verde-azulado-oscuro);
+    color: var(--color-blanco);
+    transform: translateY(-3px);
+}
+
+/* Nuevo: Efecto de desenfoque para modal o popups */
+.blur-background {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+/* Nuevo: Efecto de brillo para elementos destacados */
+.highlight-glow {
+    box-shadow: 0 0 10px var(--color-verde-azulado-oscuro);
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px var(--color-verde-azulado-oscuro);
+    }
+    to {
+        box-shadow: 0 0 20px var(--color-verde-azulado-oscuro);
+    }
+}
+
+/* ==========================================================================
+   16. Enlaces Externos con Iconos
+   ========================================================================== */
+
+.external-link {
+    color: var(--color-verde-azulado-oscuro);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.external-link:hover {
+    color: var(--color-azul-oscuro);
+    transform: translateX(5px);
+}
+
+.external-link i {
+    font-size: 1.2rem;
+}
+
+.external-link {
+    position: relative;
+    text-decoration: none;
+}
+
+.external-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--color-verde-azulado-oscuro);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.external-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Mejora adicional: Estilo para botones de descarga */
+.download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-verde-azulado-oscuro);
+    color: var(--color-blanco);
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: var(--color-azul-oscuro);
+    transform: translateY(-2px);
+}
+
+.download-button i {
+    font-size: 1.2rem;
+}
+
+/* Mejora adicional: Estilo para badges o etiquetas */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--color-verde-azulado-oscuro);
+    color: var(--color-blanco);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Mejora adicional: Efecto de hover para imágenes en la galería */
+.gallery-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-image img {
+    transition: transform 0.3s ease;
+}
+
+.gallery-image:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(13, 96, 115, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-image:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-content {
+    color: var(--color-blanco);
+    text-align: center;
+}
+
+/* Mejora adicional: Estilo para tooltips personalizados */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Mejora adicional: Estilo para barras de progreso */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: var(--color-gris-claro);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--color-verde-azulado-oscuro);
+    border-radius: 10px;
+    transition: width 0.5s ease-out;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-icon {
+    font-size: 2.5rem; /* Ajustado para que sea proporcional al título */
+    color: var(--color-azul-oscuro); /* Usa la variable de color existente o el color específico */
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.section-title {
+    font-size: 2.25rem; /* Ajustado según la imagen */
+    font-weight: 600;
+    color: var(--color-azul-oscuro); /* Mismo color que el icono */
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-verde-azulado-oscuro); /* Color de la línea debajo del título */
+}
+
+/* a. Efectos de hover para los enlaces de navegación */
+.nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-verde-azulado-oscuro); /* Ajusta este color según tu paleta */
+    transform: translateY(-2px);
+}
+
+/* b. Animaciones sutiles para los iconos de sección */
+.section-icon {
+    transition: transform 0.3s ease;
+}
+
+.section-header:hover .section-icon {
+    transform: scale(1.1);
+}
+
+/* c. Efecto parallax simple para el fondo de la sección hero */
+.hero {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Asegúrate de tener una imagen de fondo definida */
+}
+
+/* d. Transiciones suaves para los elementos del portafolio */
+.portfolio-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* e. Animación de carga para las barras de habilidades */
+@keyframes loadSkill {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.skill-bar {
+    width: 0;
+    height: 10px;
+    background-color: var(--color-verde-azulado-oscuro); /* Ajusta este color según tu paleta */
+    animation: loadSkill 1.5s ease-out forwards;
+}
+
+/* Estilos adicionales para mejorar la responsividad */
+@media (max-width: 768px) {
+    .nav-link:hover {
+        transform: none; /* Desactivar la transformación en dispositivos móviles */
+    }
+
+    .portfolio-item:hover {
+        transform: none; /* Desactivar la transformación en dispositivos móviles */
+    }
+}
